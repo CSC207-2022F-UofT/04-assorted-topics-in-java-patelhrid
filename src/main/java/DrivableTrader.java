@@ -10,4 +10,20 @@
  * Look at DomesticatableTrader.java for an example.
  */
 
+import java.util.ArrayList;
 import java.util.List;
+
+public class DrivableTrader extends Trader<Drivable> {
+    public DrivableTrader(int money) {
+        super(new ArrayList<>(), new ArrayList<>(), money);
+    }
+
+    @Override
+    public int getSellingPrice(Drivable obj) {
+        if (obj instanceof Tradable) {
+            return obj.getMaxSpeed() + ((Tradable) obj).getPrice();
+        } else {
+            return Tradable.MISSING_PRICE;
+        }
+    }
+}
